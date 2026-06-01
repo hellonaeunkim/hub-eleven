@@ -1,6 +1,10 @@
 spring:
   application:
     name: product-service
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
   config:
     import: "optional:configserver:"
   cloud:
