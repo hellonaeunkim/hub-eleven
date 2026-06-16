@@ -18,8 +18,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class RedissonStockLockManager implements StockLockManager {
 
+	private static final int MAX_RETRY_COUNT = 3;
 	private static final long WAIT_TIME_SECONDS = 3L;
 	private static final long LEASE_TIME_SECONDS = 5L;
+	private static final long RETRY_BACKOFF_MILLIS = 100L;
 
 	private final RedissonClient redissonClient;
 
@@ -29,12 +31,16 @@ public class RedissonStockLockManager implements StockLockManager {
 		boolean locked = false;
 
 		try {
-			locked = lock.tryLock(WAIT_TIME_SECONDS, LEASE_TIME_SECONDS, TimeUnit.SECONDS);
-			if (!locked) {
-				throw new GlobalException(STOCK_LOCK_TIMEOUT);
+			for (int retryCount = 0; retryCount < MAX_RETRY_COUNT; retryCount++) {
+				locked = lock.tryLock(WAIT_TIME_SECONDS, LEASE_TIME_SECONDS, TimeUnit.SECONDS);
+				if (locked) {
+					return supplier.get();
+				}
+
+				Thread.sleep(RETRY_BACKOFF_MILLIS);
 			}
 
-			return supplier.get();
+			throw new GlobalException(STOCK_LOCK_TIMEOUT);
 		} catch (InterruptedException e) {
 			Thread.currentThread().interrupt();
 			throw new GlobalException(STOCK_LOCK_TIMEOUT);
