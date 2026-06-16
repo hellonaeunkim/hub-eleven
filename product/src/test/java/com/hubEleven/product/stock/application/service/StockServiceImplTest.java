@@ -1,6 +1,5 @@
 package com.hubEleven.product.stock.application.service;
 
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.hubEleven.product.domain.model.Product;
@@ -24,51 +23,47 @@ import org.springframework.test.context.ActiveProfiles;
 @SpringBootTest
 class StockServiceImplTest {
 
-    @Autowired
-    private StockServiceImpl stockServiceImpl;
+	@Autowired private StockServiceImpl stockServiceImpl;
 
-    @Autowired
-    private JpaStockRepository jpaStockRepository;
+	@Autowired private JpaStockRepository jpaStockRepository;
 
-    @Autowired
-    private JpaProductRepository jpaProductRepository;
+	@Autowired private JpaProductRepository jpaProductRepository;
 
-    private Product product;
+	private Product product;
 
-    // 테스트 전 상품 재고 입력
-    @BeforeEach
-    public void setUp() {
+	// 테스트 전 상품 재고 입력
+	@BeforeEach
+	public void setUp() {
 
-        product = ProductFixture.createDefault();
-        jpaProductRepository.saveAndFlush(product);
+		product = ProductFixture.createDefault();
+		jpaProductRepository.saveAndFlush(product);
 
-        Stock stock = StockFixture.createFromProductWithQuantity(product, 100);
-        jpaStockRepository.saveAndFlush(stock);
-    }
+		Stock stock = StockFixture.createFromProductWithQuantity(product, 100);
+		jpaStockRepository.saveAndFlush(stock);
+	}
 
-    @AfterEach
-    public void after() {
-        jpaStockRepository.deleteAll();
-        jpaProductRepository.deleteAll();
-    }
+	@AfterEach
+	public void after() {
+		jpaStockRepository.deleteAll();
+		jpaProductRepository.deleteAll();
+	}
 
-    @Test
-    @DisplayName("재고 감소 - 단일 요청 성공")
-    void decreaseStock_success() {
+	@Test
+	@DisplayName("재고 감소 - 단일 요청 성공")
+	void decreaseStock_success() {
 
-        // given
-        int decreaseAmount = 10;
+		// given
+		int decreaseAmount = 10;
 
-        StockRequests.Decrease request = StockFixture.decreaseRequest(
-                product, decreaseAmount);
+		StockRequests.Decrease request = StockFixture.decreaseRequest(product, decreaseAmount);
 
-        // when
-        StockResult result = stockServiceImpl.decreaseStock(request);
+		// when
+		StockResult result = stockServiceImpl.decreaseStock(request);
 
-        // then - 반환값 검증
-        assertThat(result.productId()).isEqualTo(product.getProductId());
-        assertThat(result.companyId()).isEqualTo(product.getCompanyId());
-        assertThat(result.hubId()).isEqualTo(product.getHubId());
-        assertThat(result.quantity()).isEqualTo(90);
-    }
+		// then - 반환값 검증
+		assertThat(result.productId()).isEqualTo(product.getProductId());
+		assertThat(result.companyId()).isEqualTo(product.getCompanyId());
+		assertThat(result.hubId()).isEqualTo(product.getHubId());
+		assertThat(result.quantity()).isEqualTo(90);
+	}
 }
