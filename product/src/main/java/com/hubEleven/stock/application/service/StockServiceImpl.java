@@ -7,6 +7,7 @@ import com.commonLib.common.exception.GlobalException;
 import com.hubEleven.product.domain.model.Product;
 import com.hubEleven.product.domain.repository.ProductRepository;
 import com.hubEleven.stock.application.dto.StockResult;
+import com.hubEleven.stock.application.port.StockLockManager;
 import com.hubEleven.stock.domain.model.Stock;
 import com.hubEleven.stock.domain.repository.StockRepository;
 import com.hubEleven.stock.presentation.dto.request.StockRequests;
@@ -21,6 +22,8 @@ public class StockServiceImpl implements StockService {
 
 	private final StockRepository stockRepository;
 	private final ProductRepository productRepository;
+	private final StockLockManager stockLockManager;
+	private final StockDecreaseProcessor stockDecreaseProcessor;
 
 	private Product getProductOrThrow(UUID productId) {
 		return productRepository
@@ -60,16 +63,9 @@ public class StockServiceImpl implements StockService {
 	}
 
 	@Override
-	@Transactional
 	public StockResult decreaseStock(StockRequests.Decrease request) {
-
-		Product product = getProductOrThrow(request.productId());
-
-		Stock stock = getStockOrThrow(request.productId());
-
-		stock.decreaseQuantity(request.quantity());
-
-		return StockResult.from(stock, product.getName());
+		return stockLockManager.executeWithLock(
+				"stock:decrease:" + request.productId(), () -> stockDecreaseProcessor.decrease(request));
 	}
 
 	@Override
