@@ -5,6 +5,7 @@
 - **Always respond in Korean.**
 - Regardless of the input language, always reply in Korean.
 - When using technical terminology, include the original English term where appropriate.
+- Do not translate code identifiers (e.g., function/variable names), API names, logs, or error messages; keep them as-is unless a translation is explicitly needed for explanation.
 
 ## Code Review Rule
 
