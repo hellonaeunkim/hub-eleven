@@ -2,14 +2,6 @@ package com.hubEleven.product.stock.application.service;
 
 import static org.assertj.core.api.Assertions.*;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
-
 import com.hubEleven.product.domain.model.Product;
 import com.hubEleven.product.infrastructure.repository.JpaProductRepository;
 import com.hubEleven.product.stock.application.fixtures.ProductFixture;
@@ -19,19 +11,23 @@ import com.hubEleven.stock.application.service.StockServiceImpl;
 import com.hubEleven.stock.domain.model.Stock;
 import com.hubEleven.stock.infrastructure.repository.JpaStockRepository;
 import com.hubEleven.stock.presentation.dto.request.StockRequests;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
 @ActiveProfiles("test")
 @SpringBootTest
 class StockServiceImplTest {
 
-	@Autowired
-	private StockServiceImpl stockServiceImpl;
+	@Autowired private StockServiceImpl stockServiceImpl;
 
-	@Autowired
-	private JpaStockRepository jpaStockRepository;
+	@Autowired private JpaStockRepository jpaStockRepository;
 
-	@Autowired
-	private JpaProductRepository jpaProductRepository;
+	@Autowired private JpaProductRepository jpaProductRepository;
 
 	private Product product;
 
