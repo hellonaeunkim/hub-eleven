@@ -10,8 +10,63 @@
 |--------------------------------------------|-----------------------------------------------|
 | `seed/seed-scenario1-lock.sql`             | 재고 차감 동시 요청 테스트용 초기 데이터      |
 | `docs/scenario1-lock-design.md`            | 재고 차감 부하 테스트의 시나리오 및 설계 근거 |
+| `docs/test-environment-isolation-design.md` | 테스트 데이터 저장소 분리 설계 및 선택 근거   |
 | `scripts/scenario1-stock-decrease-lock.js` | 재고 차감 부하 테스트 k6 스크립트             |
 | `results/`                                 | k6 실행 결과 JSON 저장 위치                   |
+
+---
+
+## 환경 구성
+
+부하 테스트는 개발 환경과 데이터가 섞이지 않도록 다음 저장 공간을 사용합니다.
+
+| 용도 | MySQL 스키마 | Redis 논리 DB |
+|---|---|---|
+| 개발 환경 | `hubeleven` | DB 0 |
+| Spring Boot 테스트 | `hubeleven_test` | DB 1 |
+| k6 부하 테스트 | `hubeleven_loadtest` | DB 2 |
+
+Homebrew MySQL은 중지하고 Docker Compose의 MySQL과 Redis를 실행합니다. 다음 명령은 프로젝트 루트에서 실행합니다.
+
+```bash
+brew services stop mysql
+docker compose --env-file .env -f infra/docker-compose.yml up -d mysql redis
+```
+
+초기화 SQL은 새로운 MySQL 볼륨을 생성할 때만 자동 실행됩니다. 기존 볼륨에 테스트 스키마가 없다면 다음 명령으로 스키마를 생성합니다.
+
+```bash
+docker compose --env-file .env -f infra/docker-compose.yml exec -T mysql \
+  sh -c 'mysql -uroot -p"$MYSQL_ROOT_PASSWORD"' < infra/init/01_create_schemas.sql
+```
+
+기존 `hubEleven` 데이터를 사용해야 한다면 `hubeleven`으로 이전한 후 서비스를 실행합니다. 데이터 이전과 검증이 끝나기 전에는 기존 스키마를 삭제하지 않습니다.
+
+eureka, config, product 서비스는 각각 별도 터미널에서 순서대로 기동합니다. product 서비스는 기본 `prod` 프로필과 `loadtest` 프로필을 함께 사용해야 합니다.
+
+```bash
+# 터미널 1
+./gradlew :eurekaServer:bootRun
+
+# 터미널 2
+./gradlew :config:bootRun
+
+# 터미널 3
+DB_USERNAME="$(sed -n 's/^DB_USERNAME=//p' .env)" \
+DB_PASSWORD="$(sed -n 's/^DB_PASSWORD=//p' .env)" \
+SPRING_PROFILES_ACTIVE=prod,loadtest \
+./gradlew :product:bootRun
+```
+
+`loadtest` 프로필은 product 서비스의 datasource를 `hubeleven_loadtest`, Redisson의 Redis 논리 DB를 DB 2로 변경합니다.
+
+테스트가 끝나면 서비스를 종료한 후 사용하지 않는 컨테이너를 중지합니다.
+
+```bash
+docker compose --env-file .env -f infra/docker-compose.yml stop mysql redis
+```
+
+Redis 전체 DB를 삭제하는 `FLUSHALL`은 사용하지 않습니다.
 
 ---
 
