@@ -21,7 +21,7 @@
 # 1. product 서비스 최소 1회 기동 (ddl-auto: update로 p_product/p_stock 테이블 생성)
 
 # 2. 시드 데이터 삽입
-mysql -h 127.0.0.1 -P 3306 -u root -p hubEleven < seed/seed-scenario1-lock.sql
+mysql -h 127.0.0.1 -P 3306 -u root -p hubeleven_loadtest < seed/seed-scenario1-lock.sql
 ```
 
 시드 SQL은 멱등이라 여러 번 실행해도 동일한 초기 상태로 리셋됩니다.
