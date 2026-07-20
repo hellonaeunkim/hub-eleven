@@ -24,22 +24,17 @@ ON DUPLICATE KEY UPDATE
     deleted_at = NULL,
     deleted_by = NULL;
 
+DELETE FROM p_stock
+WHERE product_id = @test_product_id
+   OR stock_id = @test_stock_id;
+
 INSERT INTO p_stock (
     stock_id, product_id, company_id, hub_id, quantity,
     created_at, created_by, updated_at, updated_by, deleted_at, deleted_by
 ) VALUES (
     @test_stock_id, @test_product_id, @test_company_id, @test_hub_id, @initial_quantity,
     NOW(), 1, NOW(), 1, NULL, NULL
-)
-ON DUPLICATE KEY UPDATE
-    product_id = @test_product_id,
-    company_id = @test_company_id,
-    hub_id = @test_hub_id,
-    quantity = @initial_quantity,
-    updated_at = NOW(),
-    updated_by = 1,
-    deleted_at = NULL,
-    deleted_by = NULL;
+);
 
 COMMIT;
 
