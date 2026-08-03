@@ -1,7 +1,6 @@
 import http from 'k6/http';
 import { check } from 'k6';
 import { Counter, Rate } from 'k6/metrics';
-import { textSummary } from 'https://jslib.k6.io/k6-summary/0.0.2/index.js';
 
 const TEST_MODE = __ENV.TEST_MODE || 'explore';
 const BASE_URL = (__ENV.BASE_URL || 'http://localhost:8085').replace(/\/+$/, '');
@@ -30,7 +29,7 @@ const warmupScenario = {
     gracefulStop: '20s',
 };
 
-const scenarios = TEST_MODE === 'compare' ? createCompareScenarios() : createExploreScenarios();
+const scenarios = createScenarios();
 const measuredScenarioNames = Object.keys(scenarios).filter((name) => name !== 'warmup');
 
 export const options = {
@@ -40,6 +39,18 @@ export const options = {
     setupTimeout: '30s',
     teardownTimeout: '30s',
 };
+
+function createScenarios() {
+    if (TEST_MODE === 'warmup') {
+        return { warmup: warmupScenario };
+    }
+
+    if (TEST_MODE === 'compare') {
+        return createCompareScenarios();
+    }
+
+    return createExploreScenarios();
+}
 
 function createExploreScenarios() {
     return {
@@ -77,12 +88,11 @@ function createExploreScenarios() {
 
 function createCompareScenarios() {
     return {
-        warmup: warmupScenario,
         compare: {
             executor: 'constant-vus',
             vus: requiredPositiveInteger('VUS'),
             duration: __ENV.DURATION || '1m',
-            startTime: '1m',
+            startTime: '0s',
             gracefulStop: '20s',
         },
     };
@@ -183,17 +193,6 @@ export function teardown(data) {
     console.log('차감된 수량이 summary의 stock_decrease_successes count와 일치하는지 확인하세요');
 }
 
-export function handleSummary(data) {
-    const timestamp = new Date().toISOString().replace(/:/g, '-').slice(0, 19);
-    const label = TEST_MODE === 'compare' ? `compare-vus${__ENV.VUS}` : 'explore';
-    const resultFile = __ENV.RESULT_FILE || `results/${label}-${timestamp}.json`;
-
-    return {
-        [resultFile]: JSON.stringify(data, null, 2),
-        stdout: textSummary(data, { indent: ' ', enableColors: true }),
-    };
-}
-
 function getStock(requestType) {
     return http.get(`${BASE_URL}/v1/stocks/${PRODUCT_ID}`, {
         tags: { name: 'GET /v1/stocks/{productId}', request_type: requestType },
@@ -240,8 +239,10 @@ function parseResponseBody(res) {
 }
 
 function validateEnvironment() {
-    if (TEST_MODE !== 'explore' && TEST_MODE !== 'compare') {
-        throw new Error('TEST_MODE는 explore 또는 compare여야 합니다.');
+    const supportedModes = ['explore', 'warmup', 'compare'];
+
+    if (!supportedModes.includes(TEST_MODE)) {
+        throw new Error('TEST_MODE는 explore, warmup 또는 compare여야 합니다.');
     }
 }
 
