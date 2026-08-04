@@ -105,6 +105,7 @@ function createThresholds(scenarioNames) {
     };
 
     for (const name of scenarioNames) {
+        thresholds[`http_reqs{scenario:${name}}`] = ['count>=0'];
         thresholds[`http_req_duration{scenario:${name}}`] = ['max>=0'];
         thresholds[`stock_decrease_successes{scenario:${name}}`] = ['count>=0'];
         thresholds[`stock_lock_timeouts{scenario:${name}}`] = ['count>=0'];
