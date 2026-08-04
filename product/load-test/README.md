@@ -59,7 +59,7 @@ SPRING_PROFILES_ACTIVE=prod,loadtest \
 ./gradlew :product:bootRun
 ```
 
-`loadtest` 프로필은 product 서비스의 datasource를 `hubeleven_loadtest`, Redisson의 Redis 논리 DB를 DB 2로 변경합니다.
+`loadtest` 프로필은 product 서비스의 datasource를 `hubeleven_loadtest`, Redisson의 Redis 논리 DB를 DB 2로 변경합니다. 또한 동일 머신에서 실행되는 Zipkin과 span 전송 실패가 측정에 영향을 주지 않도록 tracing 샘플링을 비활성화합니다.
 
 테스트가 끝나면 서비스를 종료한 후 사용하지 않는 컨테이너를 중지합니다.
 
