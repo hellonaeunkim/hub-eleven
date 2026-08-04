@@ -229,7 +229,7 @@ k6 unexpected failure = 0
 
 | 항목                                              | 처리                                                                                  |
 |---------------------------------------------------|---------------------------------------------------------------------------------------|
-| `wait error`, `wait interrupted`, `k6 unexpected` | 결과 보존 → 원인 제거 → 동일 RUN 번호로 재측정                                        |
+| `wait error`, `wait interrupted`, `k6 unexpected` | 결과 보존 → 원인 제거 → 다음 RUN 번호로 재측정                                        |
 | `hold error`                                      | 결과 보존 → 원인 확인 후 판단                                                         |
 | `hold ownership_lost`                             | **baseline 수집 중단** → lease 정책 분석 → 별도 커밋으로 수정 → 3회를 처음부터 재측정 |
 
