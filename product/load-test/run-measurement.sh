@@ -603,7 +603,7 @@ if ! jq -e -n \
       )
     | .average = {
         lockWaitMs:
-            if .delta.waitAcquired > 0 then
+            (if .delta.waitAcquired > 0 then
                 (
                     ($B.wait.acquired.totalTime
                     - $A.wait.acquired.totalTime)
@@ -611,9 +611,9 @@ if ! jq -e -n \
                 ) * 1000
             else
                 null
-            end,
+            end),
         lockHoldMs:
-            if .delta.holdSuccess > 0 then
+            (if .delta.holdSuccess > 0 then
                 (
                     ($B.hold.success.totalTime
                     - $A.hold.success.totalTime)
@@ -621,7 +621,7 @@ if ! jq -e -n \
                 ) * 1000
             else
                 null
-            end
+            end)
       }
     | .k6.successTps = (
         .k6.successes / $durationSeconds
