@@ -63,7 +63,9 @@ public class RedissonStockLockManager implements StockLockManager {
 					return executeWhileHoldingLock(lock, supplier);
 				}
 
-				Thread.sleep(RETRY_BACKOFF_MILLIS);
+				if (retryCount < MAX_RETRY_COUNT - 1) {
+					Thread.sleep(RETRY_BACKOFF_MILLIS);
+				}
 			}
 
 			waitSample.stop(waitTimeoutTimer);
