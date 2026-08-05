@@ -1,0 +1,156 @@
+
+         /\      Grafana   /‾‾/  
+    /\  /  \     |\  __   /  /   
+   /  \/    \    | |/ /  /   ‾‾\ 
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/ 
+
+
+     execution: local
+        script: /Users/ann/Programming/Java Projects/hub-eleven/product/load-test/scripts/scenario1-stock-decrease-lock.js
+        output: -
+
+     scenarios: (100.00%) 1 scenario, 10 max VUs, 50s max duration (incl. graceful stop):
+              * warmup: 10 looping VUs for 30s (gracefulStop: 20s)
+
+time="2026-08-05T17:42:18+09:00" level=info msg="초기 재고: 100000000" source=console
+
+running (01.0s), 10/10 VUs, 59 complete and 0 interrupted iterations
+warmup   [   3% ] 10 VUs  00.8s/30s
+
+running (02.0s), 10/10 VUs, 176 complete and 0 interrupted iterations
+warmup   [   6% ] 10 VUs  01.8s/30s
+
+running (03.0s), 10/10 VUs, 313 complete and 0 interrupted iterations
+warmup   [   9% ] 10 VUs  02.8s/30s
+
+running (04.0s), 10/10 VUs, 466 complete and 0 interrupted iterations
+warmup   [  13% ] 10 VUs  03.8s/30s
+
+running (05.0s), 10/10 VUs, 623 complete and 0 interrupted iterations
+warmup   [  16% ] 10 VUs  04.8s/30s
+
+running (06.0s), 10/10 VUs, 793 complete and 0 interrupted iterations
+warmup   [  19% ] 10 VUs  05.8s/30s
+
+running (07.0s), 10/10 VUs, 981 complete and 0 interrupted iterations
+warmup   [  23% ] 10 VUs  06.8s/30s
+
+running (08.0s), 10/10 VUs, 1176 complete and 0 interrupted iterations
+warmup   [  26% ] 10 VUs  07.8s/30s
+
+running (09.0s), 10/10 VUs, 1370 complete and 0 interrupted iterations
+warmup   [  29% ] 10 VUs  08.8s/30s
+
+running (10.0s), 10/10 VUs, 1557 complete and 0 interrupted iterations
+warmup   [  33% ] 10 VUs  09.8s/30s
+
+running (11.0s), 10/10 VUs, 1745 complete and 0 interrupted iterations
+warmup   [  36% ] 10 VUs  10.8s/30s
+
+running (12.0s), 10/10 VUs, 1891 complete and 0 interrupted iterations
+warmup   [  39% ] 10 VUs  11.8s/30s
+
+running (13.0s), 10/10 VUs, 2036 complete and 0 interrupted iterations
+warmup   [  43% ] 10 VUs  12.8s/30s
+
+running (14.0s), 10/10 VUs, 2213 complete and 0 interrupted iterations
+warmup   [  46% ] 10 VUs  13.8s/30s
+
+running (15.0s), 10/10 VUs, 2405 complete and 0 interrupted iterations
+warmup   [  49% ] 10 VUs  14.8s/30s
+
+running (16.0s), 10/10 VUs, 2565 complete and 0 interrupted iterations
+warmup   [  53% ] 10 VUs  15.8s/30s
+
+running (17.0s), 10/10 VUs, 2764 complete and 0 interrupted iterations
+warmup   [  56% ] 10 VUs  16.8s/30s
+
+running (18.0s), 10/10 VUs, 2970 complete and 0 interrupted iterations
+warmup   [  59% ] 10 VUs  17.8s/30s
+
+running (19.0s), 10/10 VUs, 3172 complete and 0 interrupted iterations
+warmup   [  63% ] 10 VUs  18.8s/30s
+
+running (20.0s), 10/10 VUs, 3359 complete and 0 interrupted iterations
+warmup   [  66% ] 10 VUs  19.8s/30s
+
+running (21.0s), 10/10 VUs, 3547 complete and 0 interrupted iterations
+warmup   [  69% ] 10 VUs  20.8s/30s
+
+running (22.0s), 10/10 VUs, 3716 complete and 0 interrupted iterations
+warmup   [  73% ] 10 VUs  21.8s/30s
+
+running (23.0s), 10/10 VUs, 3912 complete and 0 interrupted iterations
+warmup   [  76% ] 10 VUs  22.8s/30s
+
+running (24.0s), 10/10 VUs, 4117 complete and 0 interrupted iterations
+warmup   [  79% ] 10 VUs  23.8s/30s
+
+running (25.0s), 10/10 VUs, 4317 complete and 0 interrupted iterations
+warmup   [  83% ] 10 VUs  24.8s/30s
+
+running (26.0s), 10/10 VUs, 4518 complete and 0 interrupted iterations
+warmup   [  86% ] 10 VUs  25.8s/30s
+
+running (27.0s), 10/10 VUs, 4699 complete and 0 interrupted iterations
+warmup   [  89% ] 10 VUs  26.8s/30s
+
+running (28.0s), 10/10 VUs, 4851 complete and 0 interrupted iterations
+warmup   [  93% ] 10 VUs  27.8s/30s
+
+running (29.0s), 10/10 VUs, 5051 complete and 0 interrupted iterations
+warmup   [  96% ] 10 VUs  28.8s/30s
+
+running (30.0s), 10/10 VUs, 5236 complete and 0 interrupted iterations
+warmup   [  99% ] 10 VUs  29.8s/30s
+time="2026-08-05T17:42:48+09:00" level=info msg="초기 재고: 100000000" source=console
+time="2026-08-05T17:42:48+09:00" level=info msg="최종 재고: 99994718" source=console
+time="2026-08-05T17:42:48+09:00" level=info msg="차감된 수량: 5282" source=console
+time="2026-08-05T17:42:48+09:00" level=info msg="차감된 수량이 summary의 stock_decrease_successes count와 일치하는지 확인하세요" source=console
+
+
+  █ THRESHOLDS 
+
+    http_req_failed
+    ✓ 'rate==0' rate=0.00%
+
+    stock_unexpected_failures
+    ✓ 'count==0' count=0
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 5282    174.453633/s
+    checks_succeeded...: 100.00% 5282 out of 5282
+    checks_failed......: 0.00%   0 out of 5282
+
+    ✓ 차감 성공 또는 락 타임아웃
+
+    CUSTOM
+    stock_decrease_successes........: 5282   174.453633/s
+    stock_lock_timeout_rate.........: 0.00%  0 out of 5282
+    stock_unexpected_failure_rate...: 0.00%  0 out of 5282
+    stock_unexpected_failures.......: 0      0/s
+
+    HTTP
+    http_req_duration...............: avg=56.7ms  min=4.93ms med=50.58ms max=444.63ms p(90)=73.08ms p(95)=86.75ms p(99)=138.46ms
+      { expected_response:true }....: avg=56.7ms  min=4.93ms med=50.58ms max=444.63ms p(90)=73.08ms p(95)=86.75ms p(99)=138.46ms
+    http_req_failed.................: 0.00%  0 out of 5284
+    http_reqs.......................: 5284   174.519689/s
+
+    EXECUTION
+    iteration_duration..............: avg=56.83ms min=5.86ms med=50.71ms max=444.97ms p(90)=73.21ms p(95)=86.87ms p(99)=138.27ms
+    iterations......................: 5282   174.453633/s
+    vus.............................: 10     min=10        max=10
+    vus_max.........................: 10     min=10        max=10
+
+    NETWORK
+    data_received...................: 3.1 MB 104 kB/s
+    data_sent.......................: 1.0 MB 34 kB/s
+
+
+
+
+running (30.3s), 00/10 VUs, 5282 complete and 0 interrupted iterations
+warmup ✓ [ 100% ] 10 VUs  30s
