@@ -1,0 +1,83 @@
+{
+  "metadata": {
+    "phase": "after",
+    "run": 1,
+    "vus": 200,
+    "durationSeconds": 60,
+    "stabilizeSeconds": 5,
+    "requestTimeout": "15s",
+    "curlMaxTimeSeconds": 10,
+    "commitSha": "5b4848c62198b6b371988ca53cddfb281b825c06",
+    "branch": "HEAD",
+    "measuredAt": "2026-08-05T08:49:27Z",
+    "baseUrl": "http://localhost:8085",
+    "productId": "10000000-0000-0000-0000-000000000001",
+    "k6Version": "k6 v2.1.0 (commit/devel, go1.26.4, darwin/arm64)",
+    "lockPolicy": {
+      "waitTimeSeconds": 3,
+      "leaseTimeSeconds": 5,
+      "maxRetryCount": 3,
+      "retryBackoffMillis": 100
+    },
+    "k6ExitCode": 0
+  },
+  "delta": {
+    "waitAcquired": 9425,
+    "waitTimeout": 0,
+    "waitInterrupted": 0,
+    "waitError": 0,
+    "holdSuccess": 9425,
+    "holdError": 0,
+    "holdOwnershipLost": 0,
+    "waitTerminal": 9425,
+    "holdTotal": 9425
+  },
+  "k6": {
+    "requests": 9425,
+    "successes": 9425,
+    "timeouts": 0,
+    "unexpected": 0,
+    "apiAvgMs": 1286.0039780371344,
+    "apiP95Ms": 2099.3102,
+    "apiP99Ms": 2451.76332,
+    "successTps": 157.08333333333334
+  },
+  "stock": {
+    "before": 99994763,
+    "after": 99985338,
+    "decreased": 9425
+  },
+  "process": {
+    "startTimeA": 1785919748.588,
+    "startTimeB": 1785919748.588
+  },
+  "average": {
+    "lockWaitMs": 57.722031137082226,
+    "lockHoldMs": 5.717796116392575
+  },
+  "reference": {
+    "waitMaxMs": 463.400292,
+    "holdMaxMs": 113.185333
+  },
+  "crossCheck": {
+    "allRequestsReachedTerminalWait": true,
+    "acquiredEqualsHoldTotal": true,
+    "timeoutMatches": true,
+    "stockMatchesSuccess": true
+  },
+  "diagnostic": {
+    "holdSuccessMatchesK6Success": true
+  },
+  "validity": {
+    "k6ExitZero": true,
+    "sameProcess": true,
+    "hasMeasurement": true,
+    "nonNegativeDeltas": true,
+    "waitErrorZero": true,
+    "waitInterruptedZero": true,
+    "holdErrorZero": true,
+    "ownershipLostZero": true,
+    "unexpectedZero": true
+  },
+  "verdict": "VALID"
+}

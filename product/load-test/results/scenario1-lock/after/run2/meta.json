@@ -1,0 +1,21 @@
+{
+  "phase": "after",
+  "run": 2,
+  "vus": 200,
+  "durationSeconds": 60,
+  "stabilizeSeconds": 5,
+  "requestTimeout": "15s",
+  "curlMaxTimeSeconds": 10,
+  "commitSha": "5b4848c62198b6b371988ca53cddfb281b825c06",
+  "branch": "HEAD",
+  "measuredAt": "2026-08-05T08:52:05Z",
+  "baseUrl": "http://localhost:8085",
+  "productId": "10000000-0000-0000-0000-000000000001",
+  "k6Version": "k6 v2.1.0 (commit/devel, go1.26.4, darwin/arm64)",
+  "lockPolicy": {
+    "waitTimeSeconds": 3,
+    "leaseTimeSeconds": 5,
+    "maxRetryCount": 3,
+    "retryBackoffMillis": 100
+  }
+}

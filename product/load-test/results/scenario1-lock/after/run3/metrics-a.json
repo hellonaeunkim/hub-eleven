@@ -1,0 +1,44 @@
+{
+  "capturedAt": "2026-08-05T08:55:08Z",
+  "processStartTime": 1785920044.384,
+  "stockQuantity": 99994590,
+  "wait": {
+    "acquired": {
+      "count": 5410.0,
+      "totalTime": 262.096170539,
+      "max": 0.410816459
+    },
+    "timeout": {
+      "count": 0.0,
+      "totalTime": 0.0,
+      "max": 0.0
+    },
+    "interrupted": {
+      "count": 0.0,
+      "totalTime": 0.0,
+      "max": 0.0
+    },
+    "error": {
+      "count": 0.0,
+      "totalTime": 0.0,
+      "max": 0.0
+    }
+  },
+  "hold": {
+    "success": {
+      "count": 5410.0,
+      "totalTime": 26.985847374,
+      "max": 0.197849958
+    },
+    "error": {
+      "count": 0.0,
+      "totalTime": 0.0,
+      "max": 0.0
+    },
+    "ownership_lost": {
+      "count": 0.0,
+      "totalTime": 0.0,
+      "max": 0.0
+    }
+  }
+}
