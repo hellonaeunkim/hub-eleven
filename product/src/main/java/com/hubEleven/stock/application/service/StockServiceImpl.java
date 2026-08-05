@@ -25,10 +25,13 @@ public class StockServiceImpl implements StockService {
 	private final StockLockManager stockLockManager;
 	private final StockDecreaseProcessor stockDecreaseProcessor;
 
-	private Product getProductOrThrow(UUID productId) {
-		return productRepository
-				.findByIdNotDeleted(productId)
-				.orElseThrow(() -> new GlobalException(PRODUCT_NOT_FOUND));
+	private String getProductNameOrThrow(UUID productId) {
+		Product product =
+				productRepository
+						.findByIdNotDeleted(productId)
+						.orElseThrow(() -> new GlobalException(PRODUCT_NOT_FOUND));
+
+		return product.getName();
 	}
 
 	private Stock getStockOrThrow(UUID productId) {
@@ -41,38 +44,44 @@ public class StockServiceImpl implements StockService {
 	@Transactional
 	public StockResult create(StockRequests.Create request) {
 
-		Product product = getProductOrThrow(request.productId());
+		String productName = getProductNameOrThrow(request.productId());
 
 		Stock stock =
 				Stock.create(request.productId(), request.companyId(), request.hubId(), request.quantity());
 
 		Stock savedStock = stockRepository.save(stock);
 
-		return StockResult.from(savedStock, product.getName());
+		return StockResult.from(savedStock, productName);
 	}
 
 	@Override
 	@Transactional(readOnly = true)
 	public StockResult getStockByProductId(UUID productId) {
 
-		Product product = getProductOrThrow(productId);
+		String productName = getProductNameOrThrow(productId);
 
 		Stock stock = getStockOrThrow(productId);
 
-		return StockResult.from(stock, product.getName());
+		return StockResult.from(stock, productName);
 	}
 
 	@Override
 	public StockResult decreaseStock(StockRequests.Decrease request) {
-		return stockLockManager.executeWithLock(
-				"stock:decrease:" + request.productId(), () -> stockDecreaseProcessor.decrease(request));
+		String productName = getProductNameOrThrow(request.productId());
+
+		Stock stock =
+				stockLockManager.executeWithLock(
+						"stock:decrease:" + request.productId(),
+						() -> stockDecreaseProcessor.decrease(request));
+
+		return StockResult.from(stock, productName);
 	}
 
 	@Override
 	@Transactional
 	public StockResult restoreStock(StockRequests.Restore request) {
 
-		Product product = getProductOrThrow(request.productId());
+		String productName = getProductNameOrThrow(request.productId());
 
 		Stock stock = getStockOrThrow(request.productId());
 
@@ -80,6 +89,6 @@ public class StockServiceImpl implements StockService {
 
 		Stock updatedStock = stockRepository.save(stock);
 
-		return StockResult.from(updatedStock, product.getName());
+		return StockResult.from(updatedStock, productName);
 	}
 }
