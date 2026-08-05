@@ -55,20 +55,20 @@ REPO_ROOT=$(git -C "$LOAD_TEST_DIR" rev-parse --show-toplevel)
 
 K6_SCRIPT="$LOAD_TEST_DIR/scripts/scenario1-stock-decrease-lock.js"
 SEED_FILE="$LOAD_TEST_DIR/seed/seed-scenario1-lock.sql"
-RESULTS_DIR="$LOAD_TEST_DIR/results"
+RESULTS_DIR="$LOAD_TEST_DIR/results/scenario1-lock"
 ENV_FILE="$REPO_ROOT/.env"
 COMPOSE_FILE="$REPO_ROOT/infra/docker-compose.yml"
 LOCK_MANAGER="$REPO_ROOT/product/src/main/java/com/hubEleven/stock/infrastructure/lock/RedissonStockLockManager.java"
 
-PREFIX="${PHASE}-vus${VUS}-run${RUN}"
+RUN_DIR="$RESULTS_DIR/$PHASE/run$RUN"
 
-META_FILE="$RESULTS_DIR/${PREFIX}-meta.json"
-WARMUP_LOG="$RESULTS_DIR/${PREFIX}-warmup.log"
-COMPARE_LOG="$RESULTS_DIR/${PREFIX}-compare.log"
-K6_RESULT="$RESULTS_DIR/${PREFIX}-k6.json"
-SNAPSHOT_A="$RESULTS_DIR/${PREFIX}-metrics-a.json"
-SNAPSHOT_B="$RESULTS_DIR/${PREFIX}-metrics-b.json"
-VERDICT_FILE="$RESULTS_DIR/${PREFIX}-verdict.json"
+META_FILE="$RUN_DIR/meta.json"
+WARMUP_LOG="$RUN_DIR/warmup.log"
+COMPARE_LOG="$RUN_DIR/compare.log"
+K6_RESULT="$RUN_DIR/k6.json"
+SNAPSHOT_A="$RUN_DIR/metrics-a.json"
+SNAPSHOT_B="$RUN_DIR/metrics-b.json"
+VERDICT_FILE="$RUN_DIR/verdict.json"
 
 mkdir -p "$RESULTS_DIR"
 
@@ -85,6 +85,8 @@ for file in \
         || abort "결과 파일이 이미 존재합니다: $file
 기존 측정 결과는 덮어쓰지 않습니다. RUN에 아직 사용하지 않은 다음 실행 번호를 지정하세요."
 done
+
+mkdir -p "$RUN_DIR"
 
 DIRTY=$(
     git -C "$REPO_ROOT" status --porcelain -- \

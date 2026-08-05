@@ -1,0 +1,277 @@
+
+         /\      Grafana   /‾‾/  
+    /\  /  \     |\  __   /  /   
+   /  \/    \    | |/ /  /   ‾‾\ 
+  /          \   |   (  |  (‾)  |
+ / __________ \  |_|\_\  \_____/ 
+
+
+     execution: local
+        script: /Users/ann/Programming/Java Projects/hub-eleven/product/load-test/scripts/scenario1-stock-decrease-lock.js
+        output: -
+
+     scenarios: (100.00%) 1 scenario, 200 max VUs, 1m20s max duration (incl. graceful stop):
+              * compare: 200 looping VUs for 1m0s (gracefulStop: 20s)
+
+time="2026-08-05T17:55:08+09:00" level=info msg="초기 재고: 99994590" source=console
+
+running (0m01.0s), 200/200 VUs, 113 complete and 0 interrupted iterations
+compare   [   2% ] 200 VUs  0m01.0s/1m0s
+
+running (0m02.0s), 200/200 VUs, 279 complete and 0 interrupted iterations
+compare   [   3% ] 200 VUs  0m02.0s/1m0s
+
+running (0m03.0s), 200/200 VUs, 450 complete and 0 interrupted iterations
+compare   [   5% ] 200 VUs  0m03.0s/1m0s
+
+running (0m04.0s), 200/200 VUs, 616 complete and 0 interrupted iterations
+compare   [   7% ] 200 VUs  0m04.0s/1m0s
+
+running (0m05.0s), 200/200 VUs, 793 complete and 0 interrupted iterations
+compare   [   8% ] 200 VUs  0m05.0s/1m0s
+
+running (0m06.0s), 200/200 VUs, 968 complete and 0 interrupted iterations
+compare   [  10% ] 200 VUs  0m06.0s/1m0s
+
+running (0m07.0s), 200/200 VUs, 1105 complete and 0 interrupted iterations
+compare   [  12% ] 200 VUs  0m07.0s/1m0s
+
+running (0m08.0s), 200/200 VUs, 1296 complete and 0 interrupted iterations
+compare   [  13% ] 200 VUs  0m08.0s/1m0s
+
+running (0m09.0s), 200/200 VUs, 1483 complete and 0 interrupted iterations
+compare   [  15% ] 200 VUs  0m09.0s/1m0s
+
+running (0m10.0s), 200/200 VUs, 1676 complete and 0 interrupted iterations
+compare   [  17% ] 200 VUs  0m10.0s/1m0s
+
+running (0m11.0s), 200/200 VUs, 1845 complete and 0 interrupted iterations
+compare   [  18% ] 200 VUs  0m11.0s/1m0s
+
+running (0m12.0s), 200/200 VUs, 2029 complete and 0 interrupted iterations
+compare   [  20% ] 200 VUs  0m12.0s/1m0s
+
+running (0m13.0s), 200/200 VUs, 2215 complete and 0 interrupted iterations
+compare   [  22% ] 200 VUs  0m13.0s/1m0s
+
+running (0m14.0s), 200/200 VUs, 2353 complete and 0 interrupted iterations
+compare   [  23% ] 200 VUs  0m14.0s/1m0s
+
+running (0m15.0s), 200/200 VUs, 2481 complete and 0 interrupted iterations
+compare   [  25% ] 200 VUs  0m15.0s/1m0s
+
+running (0m16.0s), 200/200 VUs, 2656 complete and 0 interrupted iterations
+compare   [  27% ] 200 VUs  0m16.0s/1m0s
+
+running (0m17.0s), 200/200 VUs, 2780 complete and 0 interrupted iterations
+compare   [  28% ] 200 VUs  0m17.0s/1m0s
+
+running (0m18.0s), 200/200 VUs, 2882 complete and 0 interrupted iterations
+compare   [  30% ] 200 VUs  0m18.0s/1m0s
+
+running (0m19.0s), 200/200 VUs, 2959 complete and 0 interrupted iterations
+compare   [  32% ] 200 VUs  0m19.0s/1m0s
+
+running (0m20.0s), 200/200 VUs, 3050 complete and 0 interrupted iterations
+compare   [  33% ] 200 VUs  0m20.0s/1m0s
+
+running (0m21.0s), 200/200 VUs, 3122 complete and 0 interrupted iterations
+compare   [  35% ] 200 VUs  0m21.0s/1m0s
+
+running (0m22.0s), 200/200 VUs, 3268 complete and 0 interrupted iterations
+compare   [  37% ] 200 VUs  0m22.0s/1m0s
+
+running (0m23.0s), 200/200 VUs, 3417 complete and 0 interrupted iterations
+compare   [  38% ] 200 VUs  0m23.0s/1m0s
+
+running (0m24.0s), 200/200 VUs, 3563 complete and 0 interrupted iterations
+compare   [  40% ] 200 VUs  0m24.0s/1m0s
+
+running (0m25.0s), 200/200 VUs, 3738 complete and 0 interrupted iterations
+compare   [  42% ] 200 VUs  0m25.0s/1m0s
+
+running (0m26.0s), 200/200 VUs, 3915 complete and 0 interrupted iterations
+compare   [  43% ] 200 VUs  0m26.0s/1m0s
+
+running (0m27.0s), 200/200 VUs, 4094 complete and 0 interrupted iterations
+compare   [  45% ] 200 VUs  0m27.0s/1m0s
+
+running (0m28.0s), 200/200 VUs, 4261 complete and 0 interrupted iterations
+compare   [  47% ] 200 VUs  0m28.0s/1m0s
+
+running (0m29.0s), 200/200 VUs, 4407 complete and 0 interrupted iterations
+compare   [  48% ] 200 VUs  0m29.0s/1m0s
+
+running (0m30.0s), 200/200 VUs, 4554 complete and 0 interrupted iterations
+compare   [  50% ] 200 VUs  0m30.0s/1m0s
+
+running (0m31.0s), 200/200 VUs, 4722 complete and 0 interrupted iterations
+compare   [  52% ] 200 VUs  0m31.0s/1m0s
+
+running (0m32.0s), 200/200 VUs, 4898 complete and 0 interrupted iterations
+compare   [  53% ] 200 VUs  0m32.0s/1m0s
+
+running (0m33.0s), 200/200 VUs, 5052 complete and 0 interrupted iterations
+compare   [  55% ] 200 VUs  0m33.0s/1m0s
+
+running (0m34.0s), 200/200 VUs, 5236 complete and 0 interrupted iterations
+compare   [  57% ] 200 VUs  0m34.0s/1m0s
+
+running (0m35.0s), 200/200 VUs, 5414 complete and 0 interrupted iterations
+compare   [  58% ] 200 VUs  0m35.0s/1m0s
+
+running (0m36.0s), 200/200 VUs, 5598 complete and 0 interrupted iterations
+compare   [  60% ] 200 VUs  0m36.0s/1m0s
+
+running (0m37.0s), 200/200 VUs, 5790 complete and 0 interrupted iterations
+compare   [  62% ] 200 VUs  0m37.0s/1m0s
+
+running (0m38.0s), 200/200 VUs, 5971 complete and 0 interrupted iterations
+compare   [  63% ] 200 VUs  0m38.0s/1m0s
+
+running (0m39.0s), 200/200 VUs, 6146 complete and 0 interrupted iterations
+compare   [  65% ] 200 VUs  0m39.0s/1m0s
+
+running (0m40.0s), 200/200 VUs, 6320 complete and 0 interrupted iterations
+compare   [  67% ] 200 VUs  0m40.0s/1m0s
+
+running (0m41.0s), 200/200 VUs, 6494 complete and 0 interrupted iterations
+compare   [  68% ] 200 VUs  0m41.0s/1m0s
+
+running (0m42.0s), 200/200 VUs, 6667 complete and 0 interrupted iterations
+compare   [  70% ] 200 VUs  0m42.0s/1m0s
+
+running (0m43.0s), 200/200 VUs, 6837 complete and 0 interrupted iterations
+compare   [  72% ] 200 VUs  0m43.0s/1m0s
+
+running (0m44.0s), 200/200 VUs, 7021 complete and 0 interrupted iterations
+compare   [  73% ] 200 VUs  0m44.0s/1m0s
+
+running (0m45.0s), 200/200 VUs, 7211 complete and 0 interrupted iterations
+compare   [  75% ] 200 VUs  0m45.0s/1m0s
+
+running (0m46.0s), 200/200 VUs, 7392 complete and 0 interrupted iterations
+compare   [  77% ] 200 VUs  0m46.0s/1m0s
+
+running (0m47.0s), 200/200 VUs, 7572 complete and 0 interrupted iterations
+compare   [  78% ] 200 VUs  0m47.0s/1m0s
+
+running (0m48.0s), 200/200 VUs, 7756 complete and 0 interrupted iterations
+compare   [  80% ] 200 VUs  0m48.0s/1m0s
+
+running (0m49.0s), 200/200 VUs, 7945 complete and 0 interrupted iterations
+compare   [  82% ] 200 VUs  0m49.0s/1m0s
+
+running (0m50.0s), 200/200 VUs, 8147 complete and 0 interrupted iterations
+compare   [  83% ] 200 VUs  0m50.0s/1m0s
+
+running (0m51.0s), 200/200 VUs, 8314 complete and 0 interrupted iterations
+compare   [  85% ] 200 VUs  0m51.0s/1m0s
+
+running (0m52.0s), 200/200 VUs, 8470 complete and 0 interrupted iterations
+compare   [  87% ] 200 VUs  0m52.0s/1m0s
+
+running (0m53.0s), 200/200 VUs, 8636 complete and 0 interrupted iterations
+compare   [  88% ] 200 VUs  0m53.0s/1m0s
+
+running (0m54.0s), 200/200 VUs, 8814 complete and 0 interrupted iterations
+compare   [  90% ] 200 VUs  0m54.0s/1m0s
+
+running (0m55.0s), 200/200 VUs, 8994 complete and 0 interrupted iterations
+compare   [  92% ] 200 VUs  0m55.0s/1m0s
+
+running (0m56.0s), 200/200 VUs, 9185 complete and 0 interrupted iterations
+compare   [  93% ] 200 VUs  0m56.0s/1m0s
+
+running (0m57.0s), 200/200 VUs, 9368 complete and 0 interrupted iterations
+compare   [  95% ] 200 VUs  0m57.0s/1m0s
+
+running (0m58.0s), 200/200 VUs, 9565 complete and 0 interrupted iterations
+compare   [  97% ] 200 VUs  0m58.0s/1m0s
+
+running (0m59.0s), 200/200 VUs, 9711 complete and 0 interrupted iterations
+compare   [  98% ] 200 VUs  0m59.0s/1m0s
+
+running (1m00.0s), 200/200 VUs, 9788 complete and 0 interrupted iterations
+compare   [ 100% ] 200 VUs  1m00.0s/1m0s
+
+running (1m01.0s), 118/200 VUs, 9874 complete and 0 interrupted iterations
+compare ↓ [ 100% ] 200 VUs  1m0s
+
+running (1m02.0s), 009/200 VUs, 9983 complete and 0 interrupted iterations
+compare ↓ [ 100% ] 200 VUs  1m0s
+time="2026-08-05T17:56:10+09:00" level=info msg="초기 재고: 99994590" source=console
+time="2026-08-05T17:56:10+09:00" level=info msg="최종 재고: 99984598" source=console
+time="2026-08-05T17:56:10+09:00" level=info msg="차감된 수량: 9992" source=console
+time="2026-08-05T17:56:10+09:00" level=info msg="차감된 수량이 summary의 stock_decrease_successes count와 일치하는지 확인하세요" source=console
+
+
+  █ THRESHOLDS 
+
+    http_req_duration{scenario:compare}
+    ✓ 'max>=0' max=2.76s
+
+    http_req_failed
+    ✓ 'rate==0' rate=0.00%
+
+    http_reqs{scenario:compare}
+    ✓ 'count>=0' count=9992
+
+    stock_decrease_successes{scenario:compare}
+    ✓ 'count>=0' count=9992
+
+    stock_lock_timeout_rate{scenario:compare}
+    ✓ 'rate>=0' rate=0.00%
+
+    stock_lock_timeouts{scenario:compare}
+    ✓ 'count>=0' count=0
+
+    stock_unexpected_failures
+    ✓ 'count==0' count=0
+
+      {scenario:compare}
+      ✓ 'count>=0' count=0
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 9992    161.010577/s
+    checks_succeeded...: 100.00% 9992 out of 9992
+    checks_failed......: 0.00%   0 out of 9992
+
+    ✓ 차감 성공 또는 락 타임아웃
+
+    CUSTOM
+    stock_decrease_successes........: 9992   161.010577/s
+      { scenario:compare }..........: 9992   161.010577/s
+    stock_lock_timeout_rate.........: 0.00%  0 out of 9992
+      { scenario:compare }..........: 0.00%  0 out of 9992
+    stock_lock_timeouts.............: 0      0/s
+      { scenario:compare }..........: 0      0/s
+    stock_unexpected_failure_rate...: 0.00%  0 out of 9992
+    stock_unexpected_failures.......: 0      0/s
+      { scenario:compare }..........: 0      0/s
+
+    HTTP
+    http_req_duration...............: avg=1.22s min=11.93ms med=1.13s max=2.76s p(90)=1.45s p(95)=2.02s p(99)=2.51s
+      { expected_response:true }....: avg=1.22s min=11.93ms med=1.13s max=2.76s p(90)=1.45s p(95)=2.02s p(99)=2.51s
+      { scenario:compare }..........: avg=1.22s min=51.43ms med=1.13s max=2.76s p(90)=1.45s p(95)=2.02s p(99)=2.51s
+    http_req_failed.................: 0.00%  0 out of 9994
+    http_reqs.......................: 9994   161.042805/s
+      { scenario:compare }..........: 9992   161.010577/s
+
+    EXECUTION
+    iteration_duration..............: avg=1.22s min=52.14ms med=1.13s max=2.76s p(90)=1.45s p(95)=2.02s p(99)=2.51s
+    iterations......................: 9992   161.010577/s
+    vus.............................: 9      min=9         max=200
+    vus_max.........................: 200    min=200       max=200
+
+    NETWORK
+    data_received...................: 5.9 MB 96 kB/s
+    data_sent.......................: 2.0 MB 32 kB/s
+
+
+
+
+running (1m02.1s), 000/200 VUs, 9992 complete and 0 interrupted iterations
+compare ✓ [ 100% ] 200 VUs  1m0s
