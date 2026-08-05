@@ -10,6 +10,8 @@
 |---------------------------------------------|-----------------------------------------------|
 | `seed/seed-scenario1-lock.sql`              | 재고 차감 동시 요청 테스트용 초기 데이터      |
 | `docs/scenario1-lock-design.md`             | 재고 차감 부하 테스트의 시나리오 및 설계 근거 |
+| `docs/scenario1-lock-refactoring.md`        | 재고 차감 락 구간 리팩토링 설계와 트레이드오프 |
+| `docs/scenario1-lock-result.md`             | 재고 차감 리팩토링 전후 측정 결과             |
 | `docs/test-environment-isolation-design.md` | 테스트 데이터 저장소 분리 설계 및 선택 근거   |
 | `scripts/scenario1-stock-decrease-lock.js`  | 재고 차감 부하 테스트 k6 스크립트             |
 | `run-measurement.sh`                        | 웜업·스냅샷·비교·검증 자동 실행 스크립트      |
