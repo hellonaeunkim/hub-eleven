@@ -1,0 +1,83 @@
+{
+  "metadata": {
+    "phase": "before",
+    "run": 2,
+    "vus": 200,
+    "durationSeconds": 60,
+    "stabilizeSeconds": 5,
+    "requestTimeout": "15s",
+    "curlMaxTimeSeconds": 10,
+    "commitSha": "f7f061409ba9aa13817e94610671800bf7253ed2",
+    "branch": "refactor/05",
+    "measuredAt": "2026-08-04T07:45:48Z",
+    "baseUrl": "http://localhost:8085",
+    "productId": "10000000-0000-0000-0000-000000000001",
+    "k6Version": "k6 v2.1.0 (commit/devel, go1.26.4, darwin/arm64)",
+    "lockPolicy": {
+      "waitTimeSeconds": 3,
+      "leaseTimeSeconds": 5,
+      "maxRetryCount": 3,
+      "retryBackoffMillis": 100
+    },
+    "k6ExitCode": 99
+  },
+  "delta": {
+    "waitAcquired": 6567,
+    "waitTimeout": 1,
+    "waitInterrupted": 0,
+    "waitError": 0,
+    "holdSuccess": 6567,
+    "holdError": 0,
+    "holdOwnershipLost": 0,
+    "waitTerminal": 6568,
+    "holdTotal": 6567
+  },
+  "k6": {
+    "requests": 6568,
+    "successes": 6567,
+    "timeouts": 0,
+    "unexpected": 1,
+    "apiAvgMs": 1849.4401067295976,
+    "apiP95Ms": 2499.03085,
+    "apiP99Ms": 8530.239880000001,
+    "successTps": 109.45
+  },
+  "stock": {
+    "before": 99998502,
+    "after": 99991935,
+    "decreased": 6567
+  },
+  "process": {
+    "startTimeA": 1785829425.084,
+    "startTimeB": 1785829425.084
+  },
+  "average": {
+    "lockWaitMs": 1824.205707988427,
+    "lockHoldMs": 8.567619114816507
+  },
+  "reference": {
+    "waitMaxMs": 8612.133708,
+    "holdMaxMs": 428.817542
+  },
+  "crossCheck": {
+    "allRequestsReachedTerminalWait": true,
+    "acquiredEqualsHoldTotal": true,
+    "timeoutMatches": false,
+    "stockMatchesSuccess": true
+  },
+  "diagnostic": {
+    "holdSuccessMatchesK6Success": true
+  },
+  "validity": {
+    "k6ExitZero": false,
+    "sameProcess": true,
+    "hasMeasurement": true,
+    "nonNegativeDeltas": true,
+    "waitErrorZero": true,
+    "waitInterruptedZero": true,
+    "holdErrorZero": true,
+    "ownershipLostZero": true,
+    "unexpectedZero": false
+  },
+  "verdict": "INVALID"
+}
