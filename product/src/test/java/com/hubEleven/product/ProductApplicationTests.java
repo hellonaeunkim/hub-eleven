@@ -23,9 +23,9 @@ class ProductApplicationTests {
 	@Test
 	void globalExceptionHandlerMapsStockLockTimeoutToConflict() {
 		assertThat(
-				globalExceptionHandler
-						.handleBusinessException(new GlobalException(STOCK_LOCK_TIMEOUT))
-						.getStatusCode())
+						globalExceptionHandler
+								.handleBusinessException(new GlobalException(STOCK_LOCK_TIMEOUT))
+								.getStatusCode())
 				.isEqualTo(CONFLICT);
 	}
 }
