@@ -33,7 +33,7 @@ public class StockServiceImpl implements StockService {
 
 	private Stock getStockOrThrow(UUID productId) {
 		return stockRepository
-				.findByProductId(productId)
+				.findByProductIdNotDeleted(productId)
 				.orElseThrow(() -> new GlobalException(STOCK_NOT_FOUND));
 	}
 

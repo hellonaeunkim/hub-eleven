@@ -86,7 +86,8 @@ public class StockConcurrencyTest {
 		executorService.shutdown();
 
 		// then
-		Stock updatedStock = jpaStockRepository.findByProductId(product.getProductId()).orElseThrow();
+		Stock updatedStock =
+				jpaStockRepository.findByProductIdAndDeletedAtIsNull(product.getProductId()).orElseThrow();
 
 		assertTrue(exceptions.isEmpty(), exceptionMessages(exceptions));
 		assertEquals(0, updatedStock.getQuantity());

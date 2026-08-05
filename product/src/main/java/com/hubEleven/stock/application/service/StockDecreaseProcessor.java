@@ -30,7 +30,7 @@ public class StockDecreaseProcessor {
 
 		Stock stock =
 				stockRepository
-						.findByProductId(request.productId())
+						.findByProductIdNotDeleted(request.productId())
 						.orElseThrow(() -> new GlobalException(STOCK_NOT_FOUND));
 
 		stock.decreaseQuantity(request.quantity());

@@ -1,7 +1,9 @@
 package com.hubEleven.product.stock.application.service;
 
+import static com.hubEleven.stock.domain.exception.StockErrorCode.STOCK_NOT_FOUND;
 import static org.assertj.core.api.Assertions.*;
 
+import com.commonLib.common.exception.GlobalException;
 import com.hubEleven.product.domain.model.Product;
 import com.hubEleven.product.infrastructure.repository.JpaProductRepository;
 import com.hubEleven.product.stock.application.fixtures.ProductFixture;
@@ -30,6 +32,7 @@ class StockServiceImplTest {
 	@Autowired private JpaProductRepository jpaProductRepository;
 
 	private Product product;
+	private Stock stock;
 
 	// 테스트 전 상품 재고 입력
 	@BeforeEach
@@ -38,7 +41,7 @@ class StockServiceImplTest {
 		product = ProductFixture.createDefault();
 		jpaProductRepository.saveAndFlush(product);
 
-		Stock stock = StockFixture.createFromProductWithQuantity(product, 100);
+		stock = StockFixture.createFromProductWithQuantity(product, 100);
 		jpaStockRepository.saveAndFlush(stock);
 	}
 
@@ -65,5 +68,19 @@ class StockServiceImplTest {
 		assertThat(result.companyId()).isEqualTo(product.getCompanyId());
 		assertThat(result.hubId()).isEqualTo(product.getHubId());
 		assertThat(result.quantity()).isEqualTo(90);
+	}
+
+	@Test
+	@DisplayName("재고 조회 - 소프트 삭제된 재고는 조회하지 않는다")
+	void getStockByProductId_whenStockDeleted_thenThrows() {
+		stock.delete(1L);
+		jpaStockRepository.saveAndFlush(stock);
+
+		assertThatThrownBy(() -> stockServiceImpl.getStockByProductId(product.getProductId()))
+				.isInstanceOf(GlobalException.class)
+				.satisfies(
+						exception ->
+								assertThat(((GlobalException) exception).getErrorCode())
+										.isEqualTo(STOCK_NOT_FOUND));
 	}
 }
