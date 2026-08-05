@@ -15,7 +15,7 @@
 | `docs/test-environment-isolation-design.md` | 테스트 데이터 저장소 분리 설계 및 선택 근거   |
 | `scripts/scenario1-stock-decrease-lock.js`  | 재고 차감 부하 테스트 k6 스크립트             |
 | `run-measurement.sh`                        | 웜업·스냅샷·비교·검증 자동 실행 스크립트      |
-| `results/`                                  | k6 실행 결과 JSON 저장 위치                   |
+| `results/<scenario>/<phase>/runN/`          | 시나리오·단계·실행별 부하 테스트 결과 저장 위치 |
 
 ---
 
@@ -90,20 +90,21 @@ mysql -h 127.0.0.1 -P 3306 -u root -p hubeleven_loadtest < seed/seed-scenario1-l
 
 사전 조건: MySQL, Redis, eureka, config, product 서비스가 기동되어 있고 시드 데이터가 삽입된 상태여야 합니다.
 
-결과 파일이 `results/` 에 저장되도록 `product/load-test` 디렉터리에서 실행합니다.
+결과 파일이 `results/scenario1-lock/manual/`에 저장되도록 `product/load-test` 디렉터리에서 실행합니다.
 
 ```bash
 cd product/load-test
+mkdir -p results/scenario1-lock/manual
 
 # 탐색 실행: 웜업 → VU 20 → 50 → 100 → 200 순차 실행 후 단계별 지표 확인
-k6 run --summary-export results/explore.json \
+k6 run --summary-export results/scenario1-lock/manual/explore.json \
   -e TEST_MODE=explore scripts/scenario1-stock-decrease-lock.js
 
 # 웜업 실행: VU 10, 30초 (Micrometer 스냅샷 A 이전 단계)
 k6 run -e TEST_MODE=warmup scripts/scenario1-stock-decrease-lock.js
 
 # 비교 실행: 지정한 VU로 본 측정만 실행 (리팩토링 전/후 동일 명령으로 반복)
-k6 run --summary-export results/compare-vus200.json \
+k6 run --summary-export results/scenario1-lock/manual/compare-vus200.json \
   -e TEST_MODE=compare -e VUS=200 scripts/scenario1-stock-decrease-lock.js
 ```
 
@@ -154,6 +155,25 @@ PHASE=after RUN=1 ./run-measurement.sh
 종료 코드 `0`은 `VALID`, `1`은 실행 조건·파일·인프라·파싱 오류, `2`는 `ownership_lost` 발생, `3`은 교차 검증 또는 유효성 검증 실패를 의미합니다. 실패한 실행 결과도 덮어쓰지 않으므로 재측정할 때는 다음 `RUN` 번호를 사용합니다.
 
 각 RUN은 측정 시도 자체를 의미하며, `VALID` 여부와 관계없이 결과를 보존합니다. 실패한 실행을 같은 RUN 번호로 덮어쓰면 오류 원인과 측정 이력이 사라지고, 여러 결과 파일이 서로 다른 실행 데이터로 섞일 수 있습니다. 따라서 재측정할 때는 기존 파일을 삭제하지 않고 다음 RUN 번호를 사용합니다.
+
+자동 측정 결과는 다음 구조로 저장됩니다.
+
+```text
+results/
+└── scenario1-lock/
+    ├── before/
+    │   └── run1/
+    │       ├── meta.json
+    │       ├── warmup.log
+    │       ├── compare.log
+    │       ├── k6.json
+    │       ├── metrics-a.json
+    │       ├── metrics-b.json
+    │       └── verdict.json
+    └── after/
+        └── run1/
+            └── ...
+```
 
 ---
 
