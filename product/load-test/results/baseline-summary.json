@@ -2,76 +2,120 @@
   "test": {
     "scenario": "stock-decrease-lock",
     "mode": "compare",
+    "phase": "before",
     "script": "scripts/scenario1-stock-decrease-lock.js",
-    "measuredAt": "2026-07-20",
-    "commit": "83378791216e971d96db6aea7489c2244a906215"
+    "measuredAt": "2026-08-05",
+    "commit": "b4ef400295999abab60b84dc1c9003c6f68a8630"
   },
   "condition": {
-    "baseUrl": "http://localhost:18085",
+    "baseUrl": "http://localhost:8085",
     "productId": "10000000-0000-0000-0000-000000000001",
     "vus": 200,
     "warmupVus": 10,
     "warmupDurationSeconds": 30,
     "measurementDurationSeconds": 60,
+    "stabilizeSeconds": 5,
+    "requestTimeout": "15s",
     "initialQuantity": 100000000,
     "mysqlSchema": "hubeleven_loadtest",
-    "redisDatabase": 2
+    "redisDatabase": 2,
+    "lockPolicy": {
+      "waitTimeSeconds": 3,
+      "leaseTimeSeconds": 5,
+      "maxRetryCount": 3,
+      "retryBackoffMillis": 100
+    }
   },
-  "runs": [
+  "attempts": [
     {
       "run": 1,
-      "compareSuccesses": 7366,
-      "tps": 122.77,
-      "avgMs": 1642.32,
-      "p95Ms": 2828.89,
-      "p99Ms": 5425.09,
-      "lockTimeouts": 0,
-      "unexpectedFailures": 0,
-      "integrity": {
-        "totalSuccessesIncludingWarmup": 9035,
-        "decreasedQuantity": 9035,
-        "matched": true
-      }
+      "commit": "ab595cb972bb1e7f6530f4e0729ea5556afcc6f9",
+      "verdict": "VALID",
+      "includedInBaseline": false,
+      "exclusionReason": "공식 baseline과 코드 버전이 다름"
     },
     {
       "run": 2,
-      "compareSuccesses": 6620,
-      "tps": 110.33,
-      "avgMs": 1836.79,
-      "p95Ms": 2842.95,
-      "p99Ms": 6081.43,
-      "lockTimeouts": 0,
-      "unexpectedFailures": 0,
-      "integrity": {
-        "totalSuccessesIncludingWarmup": 9297,
-        "decreasedQuantity": 9297,
-        "matched": true
-      }
+      "commit": "f7f061409ba9aa13817e94610671800bf7253ed2",
+      "verdict": "INVALID",
+      "includedInBaseline": false,
+      "exclusionReason": "애플리케이션 락 타임아웃 1건이 HTTP 409가 아닌 예상 밖 실패로 응답됨"
     },
     {
       "run": 3,
-      "compareSuccesses": 5536,
-      "tps": 92.27,
-      "avgMs": 2215.5,
-      "p95Ms": 2932.09,
-      "p99Ms": 6101.55,
+      "commit": "b4ef400295999abab60b84dc1c9003c6f68a8630",
+      "verdict": "VALID",
+      "includedInBaseline": true
+    },
+    {
+      "run": 4,
+      "commit": "b4ef400295999abab60b84dc1c9003c6f68a8630",
+      "verdict": "VALID",
+      "includedInBaseline": true
+    },
+    {
+      "run": 5,
+      "commit": "b4ef400295999abab60b84dc1c9003c6f68a8630",
+      "verdict": "VALID",
+      "includedInBaseline": true
+    }
+  ],
+  "runs": [
+    {
+      "run": 3,
+      "successes": 13517,
+      "successTps": 225.28,
+      "apiAvgMs": 894.05,
+      "apiP95Ms": 1120.62,
+      "apiP99Ms": 1468.87,
+      "lockWaitAvgMs": 888.37,
+      "lockHoldAvgMs": 4.14,
       "lockTimeouts": 0,
       "unexpectedFailures": 0,
-      "integrity": {
-        "totalSuccessesIncludingWarmup": 8431,
-        "decreasedQuantity": 8431,
-        "matched": true
-      }
+      "ownershipLost": 0,
+      "integrityMatched": true
+    },
+    {
+      "run": 4,
+      "successes": 13455,
+      "successTps": 224.25,
+      "apiAvgMs": 897.06,
+      "apiP95Ms": 1259.9,
+      "apiP99Ms": 1499.64,
+      "lockWaitAvgMs": 891.39,
+      "lockHoldAvgMs": 4.15,
+      "lockTimeouts": 0,
+      "unexpectedFailures": 0,
+      "ownershipLost": 0,
+      "integrityMatched": true
+    },
+    {
+      "run": 5,
+      "successes": 12660,
+      "successTps": 211.0,
+      "apiAvgMs": 954.92,
+      "apiP95Ms": 1218.23,
+      "apiP99Ms": 1604.38,
+      "lockWaitAvgMs": 949.0,
+      "lockHoldAvgMs": 4.44,
+      "lockTimeouts": 0,
+      "unexpectedFailures": 0,
+      "ownershipLost": 0,
+      "integrityMatched": true
     }
   ],
   "baseline": {
-    "aggregation": "median-of-three-valid-runs",
-    "tpsCalculation": "compareSuccesses / measurementDurationSeconds",
-    "tps": 110.33,
-    "avgMs": 1836.79,
-    "p95Ms": 2842.95,
-    "p99Ms": 6081.43,
+    "aggregation": "metric-wise-median-of-runs-3-4-5",
+    "includedRuns": [3, 4, 5],
+    "successTps": 224.25,
+    "apiAvgMs": 897.06,
+    "apiP95Ms": 1218.23,
+    "apiP99Ms": 1499.64,
+    "lockWaitAvgMs": 891.39,
+    "lockHoldAvgMs": 4.15,
     "lockTimeouts": 0,
-    "unexpectedFailures": 0
+    "unexpectedFailures": 0,
+    "ownershipLost": 0,
+    "integrityMatched": true
   }
 }
