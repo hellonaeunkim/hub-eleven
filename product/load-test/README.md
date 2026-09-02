@@ -132,6 +132,8 @@ k6 run --summary-export results/scenario1-lock/manual/compare-vus200.json \
 
 자동화 스크립트는 시드 초기화, warmup, 스냅샷 A, compare, 완충 대기, 스냅샷 B, 결과 검증을 순서대로 수행합니다. 측정 코드 버전을 명확히 남기기 위해 `results/`를 제외한 작업 트리가 깨끗해야 하므로, 관련 변경을 먼저 커밋하고 product 서비스를 재시작한 뒤 실행합니다.
 
+![k6와 Micrometer를 결합한 재고 차감 성능 테스트 흐름](docs/stock-lock-measurement-flow.png)
+
 ```bash
 cd product/load-test
 
